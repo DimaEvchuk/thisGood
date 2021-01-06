@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
+
+    <title>thisGood</title>
+</head>
+<body>
+    <!-- Header -->
+
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav id="nav" class="menu">
+
+                        <a asp-area="" asp-controller="Home" asp-action="Index" asp-route-id="">
+                            <img src="~/images/logo.png" />
+                        </a>
+
+
+                        <a asp-controller="Home" asp-action="sketchesProducts" asp-route-categoryName="Textile" asp-route-sketchPage="1">Майки</a>
+                        <a asp-controller="Home" asp-action="sketchesProducts" asp-route-categoryName="Mugs" asp-route-sketchPage="1">Кружки</a>
+
+                        <a asp-controller="" asp-action="">Как мы работаем?</a>
+                        <a asp-page="/Cart"><i class="fa fa-shopping-cart"></i></a>
+
+
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header> 
+    <div>
+        @RenderBody()
+    </div>
+    <script src="~/js/jquery-3.5.1.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+</body>
+</html>

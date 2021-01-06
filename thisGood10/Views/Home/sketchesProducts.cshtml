@@ -1,0 +1,30 @@
+﻿@model SketchesListViewModel
+
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/css/font-awesome.min.css" rel="stylesheet" />
+        <link href="~/css/style.css" rel="stylesheet" />
+
+        <title>thisGood</title>
+    </head>
+
+    <div class="container-fluid"> 
+            <div class="row">
+                @foreach (var p in Model.Sketches)
+                {
+                    <partial name="SketchSum" model="p" />
+                }
+
+            </div>
+        
+    </div>
+
+@*Пагинация на все страницы*@
+<div page-model="@Model.PagingInfo" page-action="sketchesProducts" page-classes-enabled="true"
+     page-class="btn" page-class-normal="btn-outline-dark"
+     page-class-selected="btn-warning" class="btn-group pull-right m-1"
+     page-url-categoryName="@Model.CurrentCategory">
+</div>
+
+  

@@ -1,0 +1,39 @@
+﻿@model Sketch
+
+<div class="col-lg-2">
+    <div class="text-lg-center">
+        @if (@Model.categoryName == "Textile")
+        {
+            <p><img src="~/images/shirt.jpg" class="img-fluid" /></p>
+        }
+        @if (@Model.categoryName == "Mugs")
+        {
+            <p><img src="~/images/mug.jpg" class="img-fluid" /></p>
+        }
+
+
+        @*в asp-for передаём такую же переменную как и в методе OnPost*@
+        <form id="@Model.Id" asp-page="/Cart" method="post">
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" name="returnUrl"
+                   value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+
+
+            <button type="submit" class="btn-light">
+                <i class="fa fa-shopping-cart"></i>
+            </button>
+
+        </form>
+
+        <p>@Model.sketchPrintName</p>
+        <p>19,00 BYN</p>
+
+        <div>
+
+            <p style="text-align: center;">
+                @*переводим из base64 в img*@
+                <img class="sketchPrintimg" src="data:image/jpg;base64,@Model.sketchPrint" height="85" />
+            </p>
+        </div>
+    </div>
+</div>
