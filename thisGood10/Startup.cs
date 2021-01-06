@@ -33,6 +33,9 @@ namespace thisGood10
                 Configuration["ConnectionStrings:thisGood"]);
             });
 
+
+            
+
             //регестрируем репозиторий
             services.AddScoped<IProductRepository, EFProductRepository>();
             services.AddScoped<IPersonRepository, EFPersonRepository>();
@@ -74,8 +77,10 @@ namespace thisGood10
 
             });
 
-
+            
             SeedData.EnsurePopulated(app);
         }
     }
 }
+
+
