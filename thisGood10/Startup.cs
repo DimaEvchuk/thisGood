@@ -65,10 +65,14 @@ namespace thisGood10
             app.UseEndpoints(endpoints => {
                 //делаем понятный URL адрес              
 
-                endpoints.MapControllerRoute("catpage", "{categoryName}/Page{sketchPage:int}",   new { Controller = "Home", action = "sketchesProducts" });
-                endpoints.MapControllerRoute("page", "Page{sketchPage:int}",                     new { Controller = "Home", action = "sketchesProducts", productPage = 1 });
-                endpoints.MapControllerRoute("category", "{categoryName}",                       new { Controller = "Home", action = "sketchesProducts", productPage = 1 });
-                endpoints.MapControllerRoute("pagination", "Sketches/Page{sketchPage:int}",      new { Controller = "Home", action = "sketchesProducts", productPage = 1 });
+                endpoints.MapControllerRoute("catpage", "{categoryName}/Page{sketchPage:int}",  
+                    new { Controller = "Home", action = "sketchesProducts" });
+                endpoints.MapControllerRoute("page", "Page{sketchPage:int}",                    
+                    new { Controller = "Home", action = "sketchesProducts", productPage = 1 });
+                endpoints.MapControllerRoute("category", "{categoryName}",                      
+                    new { Controller = "Home", action = "sketchesProducts", productPage = 1 });
+                endpoints.MapControllerRoute("pagination", "Sketches/Page{sketchPage:int}",    
+                    new { Controller = "Home", action = "sketchesProducts", productPage = 1 });
 
                 endpoints.MapDefaultControllerRoute();
 
