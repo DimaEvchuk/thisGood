@@ -10,24 +10,26 @@ namespace thisGood10.Models.Repositories.EntityFrameworks
 {
     public class EFProductRepository : IProductRepository
     {
-        public void DeleteProduct(Product product)
+        public Task DeleteProduct(Product product)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Product> GetAllProducts()
+        public Task<IEnumerable<Product>> GetAllProducts()
         {
             throw new NotImplementedException();
         }
 
-        public Product GetProductById(int productId)
+        public Task<Product> GetProductById(int productId)
         {
             throw new NotImplementedException();
         }
 
-        public void SaveProduct(Product product)
+        public Task SaveProduct(Product product)
         {
             throw new NotImplementedException();
         }
+
+       
     }
 }

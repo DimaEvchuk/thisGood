@@ -10,24 +10,26 @@ namespace thisGood10.Models.Repositories.EntityFrameworks
 {
     public class EFPersonRepository : IPersonRepository
     {
-        public void DeletePerson(Person person)
+        public Task DeletePerson(Person person)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Person> GetAllPersons()
+        public Task<IEnumerable<Person>> GetAllPersons()
         {
             throw new NotImplementedException();
         }
 
-        public Person GetPersonById(int personId)
+        public Task<Person> GetPersonById(int personId)
         {
             throw new NotImplementedException();
         }
 
-        public void SavePerson(Person person)
+        public Task SavePerson(Person person)
         {
             throw new NotImplementedException();
         }
+
+       
     }
 }

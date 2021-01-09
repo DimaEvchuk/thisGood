@@ -8,7 +8,8 @@ namespace thisGood10.Models.Repositories.Interfaces
 {
     public interface ICategoryRepository
     {
-        IQueryable<Category> AllCategories();
-        void SaveCategory(Category category);
+       
+        Task<IEnumerable<Category>> AllCategories();
+        Task SaveCategory(Category category);
     }
 }

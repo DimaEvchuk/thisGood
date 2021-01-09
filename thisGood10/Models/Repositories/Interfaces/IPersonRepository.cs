@@ -8,10 +8,10 @@ namespace thisGood10.Models.Repositories.Interfaces
 {
     public interface IPersonRepository
     {
-        IEnumerable<Person> GetAllPersons();
-        Person GetPersonById(int personId);
-        void SavePerson(Person person);
-        void DeletePerson(Person person);
+        Task<IEnumerable<Person>> GetAllPersons();
+        Task<Person> GetPersonById(int personId);
+        Task SavePerson(Person person);
+        Task DeletePerson(Person person);
 
     }
 }

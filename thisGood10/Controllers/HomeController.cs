@@ -28,11 +28,11 @@ namespace thisGood10.Controllers
             return View();
 
         }
-        public IActionResult sketchesProducts(string categoryName, int sketchPage = 1 )
+        public async Task<IActionResult> sketchesProducts(string categoryName, int sketchPage = 1 )
         {
            
 
-            return View(new SketchesListViewModel
+            return await View( new SketchesListViewModel
             {
 
                 Sketches = dataManager.sketchRepository.AllSketches()

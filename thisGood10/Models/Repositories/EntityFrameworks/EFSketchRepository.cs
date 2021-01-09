@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,17 +18,24 @@ namespace thisGood10.Models.Repositories.EntityFrameworks
         {
             context = ctx;
         }
-        public IQueryable<Sketch> AllSketches()
-        {  
-            return context.Sketches;
+
+
+        //Правильное использование асинхроного кода для интерфейса IQueryable
+        public async Task<IQueryable<Sketch>> AllSketches()
+        {
+            return await context.Sketches.AsQueryable().ToListAsync();
+
         }
 
-        public void DeleteSketch(Sketch sketch)
+        
+
+
+        public Task DeleteSketch(Sketch sketch)
         {
             throw new NotImplementedException();
         }
 
-        public void SaveSketch(Sketch sketch)
+        public Task SaveSketch(Sketch sketch)
         {
             throw new NotImplementedException();
         }

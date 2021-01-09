@@ -8,9 +8,9 @@ namespace thisGood10.Models.Repositories.Interfaces
 {
     public interface IProductRepository
     {
-        IEnumerable<Product> GetAllProducts();
-        Product GetProductById(int productId);
-        void SaveProduct(Product product);
-        void DeleteProduct(Product product);
+        Task<IEnumerable<Product>> GetAllProducts();
+        Task<Product> GetProductById(int productId);
+        Task SaveProduct(Product product);
+        Task DeleteProduct(Product product);
     }
 }

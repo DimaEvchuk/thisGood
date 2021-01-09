@@ -80,8 +80,8 @@ namespace thisGood10
                 endpoints.MapRazorPages();
 
             });
-
-            
+                
+                
             SeedData.EnsurePopulated(app);
         }
     }

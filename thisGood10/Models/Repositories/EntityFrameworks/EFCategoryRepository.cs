@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,12 +16,15 @@ namespace thisGood10.Models.Repositories.EntityFrameworks
         {
             context = ctx;
         }
-        public IQueryable<Category> AllCategories()
+
+       
+        //
+        public async Task<IEnumerable<Category>> AllCategories()
         {
-            return context.Categories;
+            return await context.Categories.ToListAsync();           
         }
 
-        public void SaveCategory(Category category)
+        public Task SaveCategory(Category category)
         {
             throw new NotImplementedException();
         }
