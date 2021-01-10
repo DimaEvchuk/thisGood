@@ -8,7 +8,7 @@ namespace thisGood10.Models.Repositories.Interfaces
 {
     public interface ISketchRepository
     {
-        Task<IQueryable<Sketch>> AllSketches();
+        IQueryable<Sketch> AllSketches();
         Task SaveSketch(Sketch sketch);
         Task DeleteSketch(Sketch sketch);
 

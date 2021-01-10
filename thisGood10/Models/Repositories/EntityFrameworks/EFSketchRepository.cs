@@ -20,10 +20,11 @@ namespace thisGood10.Models.Repositories.EntityFrameworks
         }
 
 
-        //Правильное использование асинхроного кода для интерфейса IQueryable
-        public async Task<IQueryable<Sketch>> AllSketches()
+        
+        public  IQueryable<Sketch> AllSketches()
         {
-            return await context.Sketches.AsQueryable().ToListAsync();
+            
+            return  context.Sketches;
 
         }
 
