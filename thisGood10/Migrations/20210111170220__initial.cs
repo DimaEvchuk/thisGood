@@ -64,19 +64,27 @@ namespace thisGood10.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     sketchPrint = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     sketchPrintName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    categoryName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    categoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Sketches", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Sketches_Categories_categoryId",
+                        column: x => x.categoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Sketches_categoryId",
+                table: "Sketches",
+                column: "categoryId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Categories");
-
             migrationBuilder.DropTable(
                 name: "Persons");
 
@@ -85,6 +93,9 @@ namespace thisGood10.Migrations
 
             migrationBuilder.DropTable(
                 name: "Sketches");
+
+            migrationBuilder.DropTable(
+                name: "Categories");
         }
     }
 }

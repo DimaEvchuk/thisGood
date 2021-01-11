@@ -64,6 +64,7 @@ namespace thisGood10
             app.UseRouting();
             app.UseEndpoints(endpoints => {
                 //делаем понятный URL адрес              
+                endpoints.MapControllerRoute("admin", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapControllerRoute("catpage", "{categoryName}/Page{sketchPage:int}",  
                     new { Controller = "Home", action = "sketchesProducts" });

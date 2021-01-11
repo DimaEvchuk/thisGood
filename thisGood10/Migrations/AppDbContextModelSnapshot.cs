@@ -107,8 +107,8 @@ namespace thisGood10.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("categoryName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("categoryId")
+                        .HasColumnType("int");
 
                     b.Property<string>("sketchPrint")
                         .HasColumnType("nvarchar(max)");
@@ -118,7 +118,25 @@ namespace thisGood10.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("categoryId");
+
                     b.ToTable("Sketches");
+                });
+
+            modelBuilder.Entity("thisGood10.Models.Sketch", b =>
+                {
+                    b.HasOne("thisGood10.Models.Category", "category")
+                        .WithMany("_Sketches")
+                        .HasForeignKey("categoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("category");
+                });
+
+            modelBuilder.Entity("thisGood10.Models.Category", b =>
+                {
+                    b.Navigation("_Sketches");
                 });
 #pragma warning restore 612, 618
         }

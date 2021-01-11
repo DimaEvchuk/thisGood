@@ -36,7 +36,7 @@ namespace thisGood10.Controllers
             {
 
                 Sketches = dataManager.sketchRepository.AllSketches()
-                            .Where(p =>p.categoryName == null  || p.categoryName == categoryName)
+                            .Where(p =>p.category.NameCategory == null  || p.category.NameCategory == categoryName)
                             .Skip((sketchPage - 1) * PageSize)
                             .Take(PageSize),
                 
@@ -46,7 +46,7 @@ namespace thisGood10.Controllers
                     ItemsPerPage = PageSize,
                     TotalItems = categoryName == null ? dataManager.sketchRepository.AllSketches().Count()
                     : dataManager.sketchRepository.AllSketches()
-                    .Where(p => p.categoryName == categoryName).Count()
+                    .Where(p => p.category.NameCategory == categoryName).Count()
                 },
 
                 CurrentCategory = categoryName

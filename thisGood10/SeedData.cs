@@ -25,6 +25,13 @@ namespace thisGood10
             }
             if (!context.Sketches.Any())
             {
+                var cat1 = new Category { NameCategory = "Textile" };
+                var cat2 = new Category { NameCategory = "Mugs" };
+
+                context.Categories.Add(cat1);
+                context.Categories.Add(cat2);
+
+                context.SaveChanges();
 
 
                 string iFile1 = @"F:\WebC#\thisGood10\thisGood10\wwwroot\images\sk4\11.jpg";
@@ -36,18 +43,18 @@ namespace thisGood10
                 string base64_3 = Convert.ToBase64String(File.ReadAllBytes(iFile3));
 
 
-                context.Sketches.AddRange(
+               context.Sketches.AddRange(
                 new Sketch
                 {
                     sketchPrint = base64_1,
-                    categoryName = "Textile",
+                    categoryId = cat1.Id,
                     sketchPrintName = "Меняю на BMW"
 
                 },
                 new Sketch
                 {
                     sketchPrint = base64_2,
-                    categoryName = "Textile",
+                    categoryId = cat1.Id,
                     sketchPrintName = "Я как все"
 
 
@@ -55,7 +62,7 @@ namespace thisGood10
                 new Sketch
                 {
                     sketchPrint = base64_3,
-                    categoryName = "Mugs",
+                    categoryId = cat2.Id,
                     sketchPrintName = "Pikachu"
 
 
