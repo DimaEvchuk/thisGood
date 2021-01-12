@@ -15,5 +15,10 @@ namespace thisGood10.Models
         public double BuyPrice { get; set; }
         public string Provider { get; set; }
         public int CategoryId { set; get; }
+
+        public virtual Category category { get; set; }
+        public virtual Person person { get; set; }
+
+
     }
 }

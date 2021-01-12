@@ -11,6 +11,8 @@ namespace thisGood10.Models
         public int Id { get; set; }
         public string NameCategory { get; set; }
 
-        public virtual ICollection<Sketch> _Sketches { get; set; } 
+        public virtual ICollection<Sketch> _Sketches { get; set; }
+        public virtual ICollection<Product> _Products { get; set; }
+
     }
 }

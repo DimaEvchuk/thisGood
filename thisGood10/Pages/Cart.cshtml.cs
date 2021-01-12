@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using thisGood10.TagHelpers;
 using thisGood10.Models;
 using System.Linq;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace thisGood10.Pages
 {
@@ -20,9 +22,11 @@ namespace thisGood10.Pages
             ReturnUrl = returnUrl ?? "/";
             Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
         }
-        public IActionResult OnPost(long Id, string returnUrl)
+        public async Task<IActionResult> OnPost(long Id, string returnUrl)
         {
-            Sketch sketch = dataManager.sketchRepository.AllSketches().FirstOrDefault(p => p.Id == Id);
+            IEnumerable<Sketch> sketches = await dataManager.sketchRepository.AllSketches();
+
+            Sketch sketch = sketches.FirstOrDefault(p => p.Id == Id);
             // ?? значит если не выполняется перевое условие тогда выполняется второе
             Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
             Cart.AddItem(sketch, 1);

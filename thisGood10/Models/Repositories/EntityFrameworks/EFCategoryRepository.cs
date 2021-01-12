@@ -18,7 +18,7 @@ namespace thisGood10.Models.Repositories.EntityFrameworks
         }
 
        
-        //
+        
         public async Task<IEnumerable<Category>> AllCategories()
         {
             return await context.Categories.ToListAsync();           

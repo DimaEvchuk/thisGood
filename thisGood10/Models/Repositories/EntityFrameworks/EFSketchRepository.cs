@@ -21,11 +21,9 @@ namespace thisGood10.Models.Repositories.EntityFrameworks
 
 
         
-        public  IQueryable<Sketch> AllSketches()
-        {
-            
-            return  context.Sketches;
-
+        public async Task<IEnumerable<Sketch>> AllSketches()
+        {           
+            return await  context.Sketches.ToListAsync();
         }
 
         

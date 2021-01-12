@@ -39,24 +39,6 @@ namespace thisGood10.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Products",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    NameProduct = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CountProduct = table.Column<int>(type: "int", nullable: false),
-                    SalePrice = table.Column<double>(type: "float", nullable: false),
-                    BuyPrice = table.Column<double>(type: "float", nullable: false),
-                    Provider = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CategoryId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Products", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Sketches",
                 columns: table => new
                 {
@@ -77,6 +59,47 @@ namespace thisGood10.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NameProduct = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CountProduct = table.Column<int>(type: "int", nullable: false),
+                    SalePrice = table.Column<double>(type: "float", nullable: false),
+                    BuyPrice = table.Column<double>(type: "float", nullable: false),
+                    Provider = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    personId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Products_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Products_Persons_personId",
+                        column: x => x.personId,
+                        principalTable: "Persons",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_CategoryId",
+                table: "Products",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_personId",
+                table: "Products",
+                column: "personId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_Sketches_categoryId",
                 table: "Sketches",
@@ -86,13 +109,13 @@ namespace thisGood10.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Persons");
-
-            migrationBuilder.DropTable(
                 name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Sketches");
+
+            migrationBuilder.DropTable(
+                name: "Persons");
 
             migrationBuilder.DropTable(
                 name: "Categories");

@@ -25,5 +25,7 @@ namespace thisGood10.Models
         public string EmailPerson { get; set; }
         public bool PaidProduct { get; set; }
         public int ProductId { get; set; }
+        public virtual ICollection<Product> _Products { get; set; }
+
     }
 }

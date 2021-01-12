@@ -1,14 +1,28 @@
-﻿
+﻿@{
+    ViewBag.Title = "ValyaAdmin";
+}
 
-
-<!DOCTYPE html>
-
-<html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/style.css">
 </head>
-<body>
-    <h2>Это страница admin</h2>
-</body>
-</html>
+<h2>Импорт файла Excel</h2>
+<div>
+    @using (Html.BeginForm("Import", "Home", FormMethod.Post, new { enctype = "multipart/form-data", id = "frm-excel" }))
+    {
+        <div>
+            Загрузите Excel-файл:
+            <input type="file" name="filename" id="fileExcel" />
+            <div>
+                <input type="submit" value="Загрузить" />
+            </div>
+        </div>
+    }
+</div>
+<h2>
+    Экспорт файла Excel
+</h2>
+<div>
+    <a href="@Url.RouteUrl("Admin", new { controller = "Home", action = "Export" })">Скачать файл</a>
+</div>

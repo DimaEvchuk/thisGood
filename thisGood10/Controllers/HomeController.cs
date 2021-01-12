@@ -28,15 +28,15 @@ namespace thisGood10.Controllers
             return View();
 
         }
-        public IActionResult sketchesProducts(string categoryName, int sketchPage = 1 )
+        public async Task<IActionResult> sketchesProducts(string categoryName, int sketchPage = 1 )
         {
-           
+            IEnumerable<Sketch> sketches = await dataManager.sketchRepository.AllSketches();
+            
 
             return View( new SketchesListViewModel
             {
 
-                Sketches = dataManager.sketchRepository.AllSketches()
-                            .Where(p =>p.category.NameCategory == null  || p.category.NameCategory == categoryName)
+                Sketches = sketches.Where(p =>p.category.NameCategory == null  || p.category.NameCategory == categoryName)
                             .Skip((sketchPage - 1) * PageSize)
                             .Take(PageSize),
                 
@@ -44,9 +44,8 @@ namespace thisGood10.Controllers
                 {
                     CurrentPage = sketchPage,
                     ItemsPerPage = PageSize,
-                    TotalItems = categoryName == null ? dataManager.sketchRepository.AllSketches().Count()
-                    : dataManager.sketchRepository.AllSketches()
-                    .Where(p => p.category.NameCategory == categoryName).Count()
+                    TotalItems = categoryName == null ? sketches.Count()
+                    : sketches.Where(p => p.category.NameCategory == categoryName).Count()
                 },
 
                 CurrentCategory = categoryName

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,14 +11,20 @@ namespace thisGood10.Models.Repositories.EntityFrameworks
 {
     public class EFProductRepository : IProductRepository
     {
+        private AppDbContext context;
+
+        public EFProductRepository(AppDbContext ctx)
+        {
+            context = ctx;
+        }
         public Task DeleteProduct(Product product)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Product>> GetAllProducts()
+        public async Task<IEnumerable<Product>> GetAllProducts()
         {
-            throw new NotImplementedException();
+            return await context.Products.ToListAsync();
         }
 
         public Task<Product> GetProductById(int productId)
@@ -25,9 +32,13 @@ namespace thisGood10.Models.Repositories.EntityFrameworks
             throw new NotImplementedException();
         }
 
-        public Task SaveProduct(Product product)
+        public async Task SaveProduct(Product product)
         {
-            throw new NotImplementedException();
+          if (product.Id == default)
+                context.Entry(product).State = EntityState.Added;
+            else
+                context.Entry(product).State = EntityState.Modified;
+            await context.SaveChangesAsync();
         }
 
        
